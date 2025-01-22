@@ -90,7 +90,7 @@ function App() {
                     value={name}
                     onChange={handleChange}
                     className="w-full px-4 py-2 bg-white/5 border border-white/10 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-[#2A9D8F] focus:border-transparent"
-                    placeholder="Type your name..."
+                    placeholder="Enter your address..."
                   />
                 </div>
                 <button
