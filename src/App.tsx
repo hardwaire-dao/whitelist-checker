@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
-const whitelist_url = 'https://gist.githubusercontent.com/donaldknoller/00109f47e25b7cde939ed48265c13829/raw/f4fee468d2f5101327b3010c6e2c7ed0ff0aa3ba/whitelist.json'
-// Update the interface to be an array of strings
-type WhitelistData = string[];
+
+// const whitelist_url = 'https://gist.githubusercontent.com/donaldknoller/b437e471bac880dfd48cbd3ded39ada6/raw/4c1b52b65ed34b041c81a0edf79092937b06f758/whitelist-tiers.json'
+const whitelist_url = 'https://gist.githubusercontent.com/donaldknoller/b437e471bac880dfd48cbd3ded39ada6/raw/e2f0027d949cd6b5a4af9820227c25dfd3716dfb/whitelist-tiers.json'
+// Update the interface to be a dictionary of (address -> { tier: string })
+type WhitelistData = {
+  [address: string]: {
+    tier: string;
+  }
+};
 
 function App() {
   const [name, setName] = useState('');
@@ -19,7 +25,7 @@ function App() {
         }
         return response.json();
       })
-      .then((data: string[]) => {
+      .then((data: WhitelistData) => {
         setWhitelistData(data);
         setIsLoading(false);
       })
@@ -32,10 +38,19 @@ function App() {
 
   const isValid = (name: string): boolean => {
     if (!whitelistData) return false;
-    // Check if the address exists in the array (case-insensitive)
-    return whitelistData.some(
+    // Case-insensitive key match in the dictionary
+    return Object.keys(whitelistData).some(
       address => address.toLowerCase() === name.toLowerCase()
     );
+  };
+
+  // Helper to get tier for the address
+  const getTier = (name: string): string => {
+    if (!whitelistData) return '';
+    const foundKey = Object.keys(whitelistData).find(
+      address => address.toLowerCase() === name.toLowerCase()
+    );
+    return foundKey ? whitelistData[foundKey].tier : '';
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -107,7 +122,9 @@ function App() {
                 <div className="space-y-4">
                   <CheckCircle className="w-16 h-16 text-[#2A9D8F] mx-auto" />
                   <h2 className="text-2xl font-bold text-[#2A9D8F]">Valid Address!</h2>
-                  <p className="text-white/60">"{name}" is a valid address.</p>
+                  <p className="text-white/60">
+                    "{name}" is a valid address in tier {getTier(name)}.
+                  </p>
                 </div>
               ) : (
                 <div className="space-y-4">
