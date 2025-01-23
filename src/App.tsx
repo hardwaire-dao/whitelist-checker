@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
-const whitelist_url = 'https://gist.githubusercontent.com/donaldknoller/00109f47e25b7cde939ed48265c13829/raw/b8155fcf5643548d3d37c5d7ca59497f372de95f/whitelist.json'
+const whitelist_url = 'https://gist.githubusercontent.com/donaldknoller/00109f47e25b7cde939ed48265c13829/raw/f4fee468d2f5101327b3010c6e2c7ed0ff0aa3ba/whitelist.json'
 // Update the interface to be an array of strings
 type WhitelistData = string[];
 
