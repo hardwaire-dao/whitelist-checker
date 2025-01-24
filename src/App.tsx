@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle, XCircle } from 'lucide-react';
 
-// const whitelist_url = 'https://gist.githubusercontent.com/donaldknoller/b437e471bac880dfd48cbd3ded39ada6/raw/4c1b52b65ed34b041c81a0edf79092937b06f758/whitelist-tiers.json'
-const whitelist_url = 'https://gist.githubusercontent.com/donaldknoller/b437e471bac880dfd48cbd3ded39ada6/raw/14b94cda0e3ff1769ca49748529569e4c7829945/whitelist-tiers.json'
+const whitelist_url = 'https://gist.githubusercontent.com/donaldknoller/b437e471bac880dfd48cbd3ded39ada6/raw/8bf3b48df89e76fdd3a21c8f7a234d77a57a169e/whitelist-tiers.json'
 // Update the interface to be a dictionary of (address -> { tier: string })
 type WhitelistData = {
   [address: string]: {
