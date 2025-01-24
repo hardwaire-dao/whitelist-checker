@@ -123,7 +123,7 @@ function App() {
                   <CheckCircle className="w-16 h-16 text-[#2A9D8F] mx-auto" />
                   <h2 className="text-2xl font-bold text-[#2A9D8F]">Valid Address!</h2>
                   <p className="text-white/60">
-                    "{name}" is a valid address in tier {getTier(name)}.
+                    "{name}" is a valid address in {getTier(name)}.
                   </p>
                 </div>
               ) : (
